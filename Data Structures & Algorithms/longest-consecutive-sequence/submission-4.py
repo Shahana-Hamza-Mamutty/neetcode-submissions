@@ -1,0 +1,43 @@
+# class Solution:
+#     def longestConsecutive(self, nums: List[int]) -> int:
+#         array_to_dict = Counter(nums)
+#         try:
+#             nums[0]
+#         except IndexError:
+#             return 0
+
+#         top = 1
+
+#         for n in nums:
+#             if not array_to_dict.get(n-1):
+#                 a = n
+#                 temp = 1
+#                 while array_to_dict.get(a+1):
+#                     a = a + 1
+#                     temp = temp + 1
+#                     if top < temp:
+#                         top = temp
+#         return top
+
+
+        
+
+
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        num_set = set(nums)
+
+        top = 0
+
+        for n in num_set:
+            if n - 1 not in num_set:
+                current = n
+                length = 1
+
+                while current + 1 in num_set:
+                    current += 1
+                    length += 1
+
+                top = max(top, length)
+
+        return top
